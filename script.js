@@ -20,10 +20,15 @@ function startGame() {
     let currentPlayer = "x";
     while (!isWinner() && playMoves < 10) {
         let number = parseInt(prompt("Type in your field (0 - 8)"));
-        while (!isValidInput()) {
+        while (!isValidInput(number)) {
             number = parseInt(prompt("Make sure the field hasn't been chosen and lies in the range (0 - 8)"));
         }
         gameTable[number] = currentPlayer;
+
+        const playerSymbol = document.createElement("img");
+        playerSymbol.src = currentPlayer === "x" ? "assets/cross.svg" : "assets/heart.svg";
+        document.getElementById(number.toString()).appendChild(playerSymbol);
+
         currentPlayer === "x" ? currentPlayer = "o" : currentPlayer = "x";
         ++playMoves;
     }
